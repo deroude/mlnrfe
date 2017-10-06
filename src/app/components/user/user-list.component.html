@@ -1,0 +1,5 @@
+<h2>User List</h2>
+<button (click)="refresh()">Refresh</button>
+<ul>
+    <li *ngFor="let user of users | async">{{user.email}}</li>
+</ul>

@@ -1,0 +1,7 @@
+<article class="mb-2" *ngFor="let article of articles|async">
+    <header>
+        <h2>{{article.title}}</h2>
+        <p><small>Published date: <time>{{article.publishedDate|date:'medium'}}</time></small></p>
+    </header>
+    <p>{{article.text}}</p>
+</article>
