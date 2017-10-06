@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
 import { FirebaseAuthService } from './../../services/auth.firebase.service';
 import { MenuItem } from './menu-item';
 import { Component, OnInit } from '@angular/core';

@@ -1,5 +1,9 @@
 export class User {
-    fullName?:string;
-    password?: string;
-    email?: string;
+    fullname?:string;
+    key?: string;
+    role?: string;
+    rank?:number;
+    lodge?:string;
+    email?:string;
+    password?:string;
 }

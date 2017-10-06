@@ -1,5 +1,6 @@
 import { FirebaseAuthService } from './../../services/auth.firebase.service';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
 import { User } from './../../domain/user';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -17,31 +18,26 @@ export class LoginComponent implements OnInit {
     loggedIn: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
     constructor(private _auth: FirebaseAuthService, private _router: Router) {
-        _auth.getUser().subscribe(t => {
-            if (t) {
-                this.loggedIn.next(true);
-            } else {
-                this.loggedIn.next(false);
-            }
-        });
     }
 
-    ngOnInit() { }
+    ngOnInit() { 
+        this._auth.getUser().subscribe(u=>{if(u!==null) this.loggedIn.next(true)});
+    }
 
     login(): void {
         this.loading = true;
         this.loginFailed = false;
         this._auth.login(this.model.email, this.model.password).subscribe(tk => {
-            console.log(tk);
             this.loading = false;
+            this.loggedIn.next(true);
             this._router.navigate(['/articles']);
-        }, err => {            
-            this.loginFailed=true;
+        }, err => {
+            this.loginFailed = true;
         });
     }
 
     logout(): void {
-        this._auth.logout();
+        this._auth.logout().subscribe(x => this.loggedIn.next(false));
         this._router.navigate(['/']);
     }
 }
