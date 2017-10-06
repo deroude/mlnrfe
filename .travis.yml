@@ -3,6 +3,7 @@ node_js:
   - "7.2.1"
 script:
   - npm install
+  - npm install functions
   - ng build --prod
 install:
   - npm install -g firebase-tools
