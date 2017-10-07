@@ -1,17 +1,17 @@
 <form *ngIf="!(loggedIn|async)" class="form-inline" role="form" (ngSubmit)="login()" #f="ngForm" novalidate>
     <small *ngIf="loginFailed" class="mr-2 text-light">
-        Incorrect username or password
+        {{'failedLogin'|translate}}
     </small>
     <div class="input-group mr-2">
         <i class="input-group-addon fa fa-user"></i>
         <input id="email" type="email" class="form-control" [ngClass]="{ 'is-invalid': loginFailed }" name="email" [(ngModel)]="model.email"
-            #email="ngModel" required placeholder="Email Address">
+            #email="ngModel" required [placeholder]="'email'|translate">
     </div>
     <div class="input-group mr-2" [ngClass]="{ 'is-invalid': loginFailed }">
         <i class="input-group-addon fa fa-lock"></i>
         <input id="password" type="password" class="form-control" [ngClass]="{ 'is-invalid': loginFailed }" name="password" value=""
-            placeholder="Password" [(ngModel)]="model.password" #password="ngModel" required>        
+            [placeholder]="'password'|translate" [(ngModel)]="model.password" #password="ngModel" required>        
     </div>
-    <button type="submit" class="btn btn-light">Login</button>
+    <button type="submit" class="btn btn-light">{{'login'|translate}}</button>
 </form>
-<button *ngIf="loggedIn|async" (click)="logout()" class="btn btn-secondary navbar-right">Logout</button>
+<button *ngIf="loggedIn|async" (click)="logout()" class="btn btn-light navbar-right">{{'logout'|translate}}</button>

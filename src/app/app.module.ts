@@ -1,3 +1,4 @@
+import { TranslatePipe } from './directives/translate.pipe';
 import { FirebaseAuthService } from './services/auth.firebase.service';
 import { MenuComponent } from './components/menu/menu.component';
 import { FrontPageComponent } from './components/front-page/front-page.component';
@@ -7,6 +8,7 @@ import { UserListComponent } from './components/user/user-list.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './components/login/login.component';
 import { ResourceService } from './services/resource.service';
+import { TranslateService } from './services/translate.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -15,6 +17,7 @@ import { AppComponent } from './app.component';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import {CookieService} from 'ngx-cookie-service';
 import { environment } from '../environments/environment';
 
 @NgModule({
@@ -25,7 +28,8 @@ import { environment } from '../environments/environment';
     UserListComponent,
     ArticleListComponent,
     PagenNotFoundComponent,
-    FrontPageComponent
+    FrontPageComponent,
+    TranslatePipe
   ],
   imports: [
     BrowserModule,
@@ -36,7 +40,7 @@ import { environment } from '../environments/environment';
     AngularFirestoreModule,
     AngularFireAuthModule
   ],
-  providers: [FirebaseAuthService,ResourceService],
+  providers: [CookieService,FirebaseAuthService,ResourceService,TranslateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

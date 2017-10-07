@@ -7,3 +7,6 @@ article{
     max-height:16rem;
     overflow: hidden;
 }
+.progress.fixed-top{
+    margin-top:56px;
+}

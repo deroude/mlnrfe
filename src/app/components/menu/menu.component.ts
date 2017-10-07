@@ -18,7 +18,7 @@ export class MenuComponent implements OnInit {
         this._auth.getUser().subscribe(
             is => {
                 if (is !== null) {
-                    this.menuItems = [{ title: "Home", link: "/articles" }, { title: "Users", link: "/users" }];
+                    this.menuItems = [{ title: "home", link: "/articles" }, { title: "users", link: "/users" }];
                 } else {
                     this.menuItems = [];
                 }
