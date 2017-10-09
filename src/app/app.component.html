@@ -1,16 +1,29 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
     <a class="navbar-brand" href="#">{{(lodge$|async)?.name}}/{{(user$|async)?.fullname}}</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul menu class="navbar-nav mr-auto">
+        </ul>
+        <ul class="navbar-right navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" (click)="switchLang('ro')">Ro</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="switchLang('en')">En</a>
+            </li>
         </ul>
         <div login class="navbar-form navbar-right">
         </div>
     </div>
 </nav>
+<div class="progress fixed-top" [style.background-color]="progress===0?'white':'inherit'">
+    <div class="progress-bar bg-info" role="progressbar" [style.width]="progress+'%'" [attr.aria-valuenow]="progress" aria-valuemin="0"
+        aria-valuemax="100"></div>
+</div>
 <div class="container-fluid">
     <router-outlet></router-outlet>
 </div>
