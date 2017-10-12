@@ -11,6 +11,7 @@ exports.httpEmail = functions.https.onRequest((req, res) => {
         error.code = 405;
         throw error;
       }
+      console.log(req.body);
       let msg = {
         to: req.body.recipients,
         from: req.body.from,
