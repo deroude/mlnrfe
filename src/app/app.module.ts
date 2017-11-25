@@ -1,3 +1,4 @@
+import { MailService } from './services/mail.service';
 import { TranslatePipe } from './directives/translate.pipe';
 import { FirebaseAuthService } from './services/auth.firebase.service';
 import { MenuComponent } from './components/menu/menu.component';
@@ -40,7 +41,7 @@ import { environment } from '../environments/environment';
     AngularFirestoreModule,
     AngularFireAuthModule
   ],
-  providers: [CookieService,FirebaseAuthService,ResourceService,TranslateService],
+  providers: [CookieService,FirebaseAuthService,ResourceService,TranslateService,MailService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

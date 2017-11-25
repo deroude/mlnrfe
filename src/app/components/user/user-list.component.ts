@@ -1,3 +1,4 @@
+import { MailService } from './../../services/mail.service';
 import { ResourceService } from './../../services/resource.service';
 import { User } from './../../domain/user';
 
@@ -10,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class UserListComponent implements OnInit {
-    constructor(private _res:ResourceService) { }
+    constructor(private _res:ResourceService, private _mail:MailService) { }
 
     users:Observable<User[]>
 
@@ -18,5 +19,9 @@ export class UserListComponent implements OnInit {
 
     refresh(){
         this.users=this._res.getList("/api/user");
+    }
+
+    sendMail(){
+        this._mail.mail(['rvgabriel@yahoo.com'],'test','text',new Date()).subscribe(re=>console.log(re));
     }
 }

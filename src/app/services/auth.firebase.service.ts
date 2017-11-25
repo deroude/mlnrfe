@@ -26,6 +26,10 @@ export class FirebaseAuthService implements CanActivate, CanLoad {
         return this.afAuth.authState;
     }
 
+    getToken(): Observable<any> {
+        return Observable.fromPromise(this.afAuth.auth.currentUser.getIdToken());
+    }
+
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
         return this.getUser().switchMap(u => {
             if (u !== null) return Observable.of(true);
