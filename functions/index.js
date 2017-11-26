@@ -8,13 +8,13 @@ const nodemailer = require('nodemailer');
 // 2. https://accounts.google.com/DisplayUnlockCaptcha
 // For other types of transports such as Sendgrid see https://nodemailer.com/transports/
 // TODO: Configure the `gmail.email` and `gmail.password` Google Cloud environment variables.
-const gmailEmail = functions.config().gmail.username;
-const gmailPassword = functions.config().gmail.password;
+
 const mailTransport = nodemailer.createTransport({
   service: 'gmail',
+  pool:'true',
   auth: {
-    user: gmailEmail,
-    pass: gmailPassword
+    user: functions.config().gmail.username,
+    pass: functions.config().gmail.password
   }
 });
 
@@ -22,7 +22,6 @@ const mailTransport = nodemailer.createTransport({
 exports.sendInvitations = functions.firestore
   .document('invitations/{invitationId}')
   .onCreate((event) => {
-    // Retrieve the current and previous value
     const data = event.data.data();
     const mailOptions = {
       from: data.from,
@@ -30,8 +29,9 @@ exports.sendInvitations = functions.firestore
       subject: data.subject,
       text: data.text
     };
-    return mailTransport.sendMail(mailOptions).then((error) => {
-      if (error) {
+    return mailTransport.sendMail(mailOptions).then((re) => {
+      if (re.rejected.length>0) {
+        console.log(re);
         event.data.ref.set({ status: 'ERROR' }, { merge: true })
       } else {
         event.data.ref.set({ status: 'SENT' }, { merge: true });
