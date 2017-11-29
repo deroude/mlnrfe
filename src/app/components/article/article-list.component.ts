@@ -9,9 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class ArticleListComponent implements OnInit {
-    constructor(private _resource:ResourceService) { }
+    constructor(private _resource:ResourceService<Article>) { }
 
-    articles:Observable<any>;
+    articles:Observable<Article[]>;
 
     ngOnInit() { 
         this.articles=this._resource.getList("/articles_private",ref=>ref.orderBy("publishedDate","desc").limit(10));

@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class FrontPageComponent implements OnInit {
-    constructor(private _resource: ResourceService) { }
+    constructor(private _resource: ResourceService<any>) { }
 
     articles:Observable<any>
 

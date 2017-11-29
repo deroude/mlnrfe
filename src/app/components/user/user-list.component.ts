@@ -11,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class UserListComponent implements OnInit {
-    constructor(private _res:ResourceService, private _mail:MailService) { }
+    constructor(private _res:ResourceService<User>, private _mail:MailService) { }
 
     users:Observable<User[]>
 

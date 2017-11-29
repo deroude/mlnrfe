@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   lodge$: Observable<Lodge>;
   progress: number = 0;
 
-  constructor(private _resource: ResourceService, private _auth: FirebaseAuthService, private _translate: TranslateService) {
+  constructor(private _resource: ResourceService<any>, private _auth: FirebaseAuthService, private _translate: TranslateService) {
   }
 
   ngOnInit(): void {
